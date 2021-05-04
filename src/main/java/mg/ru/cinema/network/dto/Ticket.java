@@ -1,9 +1,14 @@
 package mg.ru.cinema.network.dto;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Date;
 
+@ToString
 @Getter
+@EqualsAndHashCode
 public class Ticket {
     private final int row;
     private final int seatNumber;
