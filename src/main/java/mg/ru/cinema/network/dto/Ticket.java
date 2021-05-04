@@ -1,4 +1,4 @@
-package ru.cinema.network.dto;
+package mg.ru.cinema.network.dto;
 
 import lombok.Getter;
 import java.util.Date;

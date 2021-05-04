@@ -1,8 +1,8 @@
-package ru.cinema.network.repository;
+package mg.ru.cinema.network.repository;
 
 import org.springframework.stereotype.Repository;
-import ru.cinema.network.model.MovieSession;
-import ru.cinema.network.model.Seat;
+import mg.ru.cinema.network.model.Session;
+import mg.ru.cinema.network.model.Seat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,12 +12,24 @@ import java.util.*;
 public class MovieSessionRepo {
     //TODO: подключить БД
 
-    private Set<MovieSession> sessions;
+    private Set<Session> sessions;
     public MovieSessionRepo() throws ParseException {
         sessions = createSessionSet();
     }
 
-    public MovieSession findMovieSessionByNameAndDate(String name, Date dt) {
+    public Set<Session> findAllMoviesSession(){
+        return sessions;
+    }
+
+    public Optional<Session> findSessionById(Long sessionId) {
+        return sessions.stream()
+                .filter(session -> session.getId().equals(sessionId))
+                .findAny()
+                ;
+//                .orElseThrow(() -> new RuntimeException("No such movie!"));
+    }
+
+    public Session findMovieSessionByNameAndDate(String name, Date dt) {
         return sessions.stream()
                 .filter(session -> session.getMovieName().equals(name))
                 .filter(session -> session.getTime().equals(dt))
@@ -25,24 +37,27 @@ public class MovieSessionRepo {
                 .orElseThrow(() -> new RuntimeException("No such movie!"));
     }
 
-    private Set<MovieSession> createSessionSet() throws ParseException {
+    private Set<Session> createSessionSet() throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.US);
         formatter.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
-        MovieSession ms1 = new MovieSession("Lord of the Rings",
+        Session ms1 = new Session(1L,
+                "Lord of the Rings",
                 formatter.parse("01.01.2021 10:00:00"),
                 new HashSet<>() {{
                     add(new Seat(1,2));
                     add(new Seat(1,1));
                 }}
         );
-        MovieSession ms2 = new MovieSession("Home Alone",
+        Session ms2 = new Session(2L,
+                "Home Alone",
                 formatter.parse("02.01.2021 10:00:00"),
                 new HashSet<>() {{
                     add(new Seat(1,2));
                     add(new Seat(1,1));
                 }}
         );
-        MovieSession ms3 = new MovieSession("Game of thrones",
+        Session ms3 = new Session(3L,
+                "Game of thrones",
                 formatter.parse("03.01.2021 10:00:00"),
                 new HashSet<>() {{
                     add(new Seat(1,2));

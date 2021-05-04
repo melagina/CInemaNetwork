@@ -1,7 +1,6 @@
-package ru.cinema.network.model;
+package mg.ru.cinema.network.model;
 
 import lombok.Getter;
-import ru.cinema.network.exception.SeatBookingException;
 
 @Getter
 public class Seat {
