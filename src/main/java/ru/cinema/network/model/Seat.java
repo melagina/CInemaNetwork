@@ -16,13 +16,7 @@ public class Seat {
         this.vacant = true;
     }
 
-    public void book() {
-        if (vacant == false) { throw new SeatBookingException(); }
-        vacant = false;
-    }
-
-    public void unbook() {
-        if (vacant == true) { throw new SeatBookingException(); }
-        vacant = true;
+    public void setVacant(boolean vacant) {
+        this.vacant = vacant;
     }
 }

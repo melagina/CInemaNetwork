@@ -22,9 +22,9 @@ public class CinemaClientServiceImpl implements CinemaClientSevice {
         Seat seat = movieSessionRepo.findMovieSessionByNameAndDate(movieName, dt).getSeats()
                 .stream()
                 .filter(s -> s.getSeatNumber() == seatNumber && s.getRow() == row && s.isVacant())
-                .findFirst()
+                .findAny()
                 .orElseThrow(SeatBookingException::new);
-        seat.book();
+        seat.setVacant(false);
         return new Ticket(seat.getRow(), seat.getSeatNumber(), movieName, dt);
 
     }
@@ -39,7 +39,7 @@ public class CinemaClientServiceImpl implements CinemaClientSevice {
                         && !s.isVacant())
                 .findFirst()
                 .orElseThrow(SeatBookingException::new);
-        seat.unbook();
+        seat.setVacant(true);
     }
 
     @Override
