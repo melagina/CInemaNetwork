@@ -1,13 +1,25 @@
 package mg.ru.cinema.network.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Getter
+import javax.persistence.*;
+
+@Entity
+@Table(name = "seat")
+@Getter @Setter
+@NoArgsConstructor
 public class Seat {
-
-    private final int row;
-    private final int seatNumber;
+    @Id
+    @GeneratedValue
+    private int row;
+    @Column
+    private int seatNumber;
+    @Column
     private boolean vacant;
+    @ManyToOne
+    private Session session;
 
     public Seat(int row, int seatNumber) {
         this.row = row;

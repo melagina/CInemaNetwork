@@ -43,7 +43,7 @@ public class MovieSessionRepo {
         Session ms1 = new Session(1L,
                 "Lord of the Rings",
                 formatter.parse("01.01.2021 10:00:00"),
-                new HashSet<>() {{
+                new ArrayList<>() {{
                     add(new Seat(1,2));
                     add(new Seat(1,1));
                 }}
@@ -51,7 +51,7 @@ public class MovieSessionRepo {
         Session ms2 = new Session(2L,
                 "Home Alone",
                 formatter.parse("02.01.2021 10:00:00"),
-                new HashSet<>() {{
+                new ArrayList<>() {{
                     add(new Seat(1,2));
                     add(new Seat(1,1));
                 }}
@@ -59,7 +59,7 @@ public class MovieSessionRepo {
         Session ms3 = new Session(3L,
                 "Game of thrones",
                 formatter.parse("03.01.2021 10:00:00"),
-                new HashSet<>() {{
+                new ArrayList<>() {{
                     add(new Seat(1,2));
                     add(new Seat(1,1));
                 }}
